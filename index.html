@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hernán Mauricio Bustos — BI Senior</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0F2744;
+  --navy2:#1A3A5C;
+  --accent:#C9873A;
+  --accent2:#E8A85A;
+  --light:#F5F3EF;
+  --white:#fff;
+  --text:#1C1C1C;
+  --muted:#5A6A7A;
+  --card:#fff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--light);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(15,39,68,0.96);backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 5%;height:64px;
+  border-bottom:2px solid var(--accent);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);font-weight:700;letter-spacing:0.5px;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--accent2);}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#0D1F35 100%);
+  display:flex;align-items:center;
+  padding:80px 5% 60px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-100px;right:-100px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,135,58,0.12) 0%,transparent 70%);
+  animation:pulse 6s ease-in-out infinite;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-150px;left:20%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.03) 0%,transparent 70%);
+}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+
+.hero-content{max-width:680px;position:relative;z-index:2;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,135,58,0.15);border:1px solid rgba(201,135,58,0.4);
+  color:var(--accent2);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 16px;border-radius:100px;margin-bottom:24px;
+  animation:fadeUp .6s ease both;
+}
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,6vw,72px);
+  font-weight:900;color:var(--white);
+  line-height:1.05;margin-bottom:16px;
+  animation:fadeUp .6s .1s ease both;
+}
+.hero-name span{color:var(--accent);}
+.hero-title{
+  font-size:16px;color:rgba(255,255,255,0.65);font-weight:400;
+  line-height:1.7;margin-bottom:36px;max-width:520px;
+  animation:fadeUp .6s .2s ease both;
+}
+.hero-pills{
+  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;
+  animation:fadeUp .6s .3s ease both;
+}
+.pill{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.8);font-size:12px;font-weight:500;
+  padding:6px 14px;border-radius:100px;transition:all .2s;
+}
+.pill:hover{background:rgba(201,135,58,0.2);border-color:var(--accent);color:var(--accent2);}
+.hero-cta{
+  display:flex;gap:14px;flex-wrap:wrap;
+  animation:fadeUp .6s .4s ease both;
+}
+.btn-primary{
+  background:var(--accent);color:var(--white);font-size:13px;font-weight:600;
+  padding:13px 28px;border-radius:8px;text-decoration:none;
+  transition:all .2s;letter-spacing:0.3px;
+  border:2px solid var(--accent);
+}
+.btn-primary:hover{background:var(--accent2);border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,135,58,0.3);}
+.btn-secondary{
+  background:transparent;color:var(--white);font-size:13px;font-weight:600;
+  padding:13px 28px;border-radius:8px;text-decoration:none;
+  border:2px solid rgba(255,255,255,0.3);transition:all .2s;letter-spacing:0.3px;
+}
+.btn-secondary:hover{border-color:var(--white);background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+
+.hero-stats{
+  position:absolute;right:5%;bottom:10%;
+  display:flex;flex-direction:column;gap:20px;
+  animation:fadeLeft .7s .5s ease both;
+}
+.stat-card{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);border-radius:12px;padding:18px 24px;
+  text-align:center;min-width:130px;
+  transition:all .3s;
+}
+.stat-card:hover{background:rgba(201,135,58,0.12);border-color:rgba(201,135,58,0.3);transform:translateX(-4px);}
+.stat-number{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--accent);line-height:1;}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.55);font-weight:500;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* SECTIONS */
+section{padding:80px 5%;}
+.section-tag{
+  display:inline-block;color:var(--accent);font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;
+}
+.section-title{
+  font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);
+  font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:16px;
+}
+.section-line{
+  width:48px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:48px;
+}
+.section-title.white{color:var(--white);}
+.section-line.white{background:var(--accent2);}
+
+/* SOBRE MÍ */
+#sobre{background:var(--white);}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.sobre-text p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.sobre-text p strong{color:var(--navy);}
+.sobre-img{
+  border-radius:16px;overflow:hidden;position:relative;
+  box-shadow:0 24px 64px rgba(15,39,68,0.15);
+}
+.sobre-img img{width:100%;height:320px;object-fit:cover;display:block;}
+.sobre-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(15,39,68,0.3),transparent);
+  border-radius:16px;
+}
+.sobre-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.badge{
+  background:var(--light);border:1px solid #E0D8D0;
+  color:var(--navy);font-size:12px;font-weight:600;
+  padding:6px 14px;border-radius:8px;
+}
+
+/* HABILIDADES */
+#habilidades{background:var(--light);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.skill-card{
+  background:var(--white);border-radius:14px;padding:28px;
+  border:1px solid #E8E0D8;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--navy),var(--accent));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.skill-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(15,39,68,0.1);}
+.skill-card:hover::before{transform:scaleX(1);}
+.skill-icon{font-size:28px;margin-bottom:14px;}
+.skill-name{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tag{background:var(--light);color:var(--muted);font-size:11px;font-weight:500;padding:3px 10px;border-radius:100px;border:1px solid #E0D8D0;}
+
+/* EXPERIENCIA */
+#experiencia{background:var(--navy);position:relative;overflow:hidden;}
+#experiencia::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.timeline{position:relative;max-width:800px;margin:0 auto;}
+.timeline::before{
+  content:'';position:absolute;left:20px;top:0;bottom:0;
+  width:2px;background:linear-gradient(to bottom,var(--accent),rgba(201,135,58,0.1));
+}
+.timeline-item{
+  padding-left:64px;position:relative;margin-bottom:44px;
+  animation:fadeUp .5s ease both;
+}
+.timeline-dot{
+  position:absolute;left:10px;top:4px;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--accent);border:3px solid var(--navy);
+  box-shadow:0 0 0 3px rgba(201,135,58,0.3);
+}
+.timeline-card{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;padding:24px 28px;
+  transition:all .3s;
+}
+.timeline-card:hover{background:rgba(255,255,255,0.08);border-color:rgba(201,135,58,0.3);transform:translateX(4px);}
+.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;flex-wrap:wrap;gap:8px;}
+.timeline-title{font-size:16px;font-weight:700;color:var(--white);}
+.timeline-dates{font-size:11px;font-weight:600;color:var(--accent);background:rgba(201,135,58,0.12);padding:4px 12px;border-radius:100px;white-space:nowrap;}
+.timeline-company{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px;}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.timeline-bullets li{font-size:13px;color:rgba(255,255,255,0.7);padding-left:16px;position:relative;line-height:1.6;}
+.timeline-bullets li::before{content:'◆';position:absolute;left:0;color:var(--accent);font-size:8px;top:4px;}
+
+/* PROYECTOS */
+#proyectos{background:var(--white);}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.project-card{
+  background:var(--light);border:1px solid #E8E0D8;border-radius:16px;
+  padding:32px;position:relative;overflow:hidden;
+  transition:all .3s;
+}
+.project-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--navy),var(--accent));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(15,39,68,0.1);border-color:#D8C8B8;}
+.project-card:hover::after{transform:scaleX(1);}
+.project-number{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(15,39,68,0.06);line-height:1;margin-bottom:16px;}
+.project-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px;}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+.project-tag{
+  display:inline-block;margin-top:16px;
+  background:rgba(201,135,58,0.1);color:var(--accent);
+  font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;
+}
+
+/* CONTACTO */
+#contacto{
+  background:linear-gradient(135deg,var(--navy) 0%,#0D1F35 100%);
+  text-align:center;
+}
+.contact-card{
+  max-width:600px;margin:0 auto;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;padding:48px;
+}
+.contact-card p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:32px;}
+.contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.contact-link{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.85);text-decoration:none;font-size:13px;font-weight:500;
+  padding:12px 22px;border-radius:10px;transition:all .2s;
+}
+.contact-link:hover{background:rgba(201,135,58,0.2);border-color:var(--accent);color:var(--accent2);}
+
+/* FOOTER */
+footer{background:#080F1A;padding:24px 5%;text-align:center;}
+footer p{font-size:12px;color:rgba(255,255,255,0.3);}
+footer span{color:var(--accent);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(24px);}to{opacity:1;transform:translateX(0);}}
+
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sobre-grid{grid-template-columns:1fr;}
+  .sobre-img{display:none;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .projects-grid{grid-template-columns:1fr;}
+  .hero-stats{display:none;}
+}
+@media(max-width:600px){
+  .skills-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M<span>.</span>Bustos</div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre mí</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">📊 Disponible para nuevas oportunidades</div>
+    <h1 class="hero-name">Hernán<br>Mauricio <span>Bustos</span></h1>
+    <p class="hero-title">BI Senior con más de 5 años transformando datos en decisiones estratégicas. Especialista en SQL avanzado, data warehousing y visualización ejecutiva para entornos financieros y operativos en LATAM.</p>
+    <div class="hero-pills">
+      <span class="pill">BigQuery</span>
+      <span class="pill">Snowflake</span>
+      <span class="pill">Power BI</span>
+      <span class="pill">Tableau</span>
+      <span class="pill">SQL Avanzado</span>
+      <span class="pill">Python</span>
+      <span class="pill">Airflow</span>
+      <span class="pill">ETL</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn-primary">Contáctame</a>
+      <a href="#proyectos" class="btn-secondary">Ver proyectos</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Años en BI</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">95%</div>
+      <div class="stat-label">Precisión modelo</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Países LATAM</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1.5pp</div>
+      <div class="stat-label">↑ Margen bruto</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="reveal">
+    <span class="section-tag">Quién soy</span>
+    <h2 class="section-title">Sobre mí</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="sobre-grid">
+    <div class="sobre-text reveal">
+      <p>Soy <strong>Ingeniero Industrial y Especialista en Inteligencia de Negocios</strong> con más de 5 años de experiencia conectando datos con estrategia de negocio. He trabajado en entornos financieros, operativos y comerciales en LATAM, siempre con foco en entregar información que mueve decisiones reales.</p>
+      <p>Tengo experiencia sólida en <strong>SQL avanzado, data warehousing con BigQuery y Snowflake</strong>, visualización ejecutiva con Power BI, Tableau y Superset, y automatización de flujos con Airflow. Mi diferencial está en entender el negocio, no solo los datos.</p>
+      <p>He liderado el diseño e implementación de modelos de rentabilidad P&L, migrado infraestructuras de datos, gestionado reportería regulatoria y construido dashboards usados por gerencia general para decisiones críticas.</p>
+      <div class="sobre-badges">
+        <span class="badge">Ingeniería Industrial — La Salle</span>
+        <span class="badge">Esp. Inteligencia de Negocios</span>
+        <span class="badge">Bootcamp IA — Sergio Arboleda</span>
+        <span class="badge">Colombia 🇨🇴</span>
+      </div>
+    </div>
+    <div class="sobre-img reveal">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Dashboard analytics" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="reveal">
+    <span class="section-tag">Stack técnico</span>
+    <h2 class="section-title">Habilidades</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">BI & Visualización</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span><span class="skill-tag">DAX</span><span class="skill-tag">Power Query</span>
+        <span class="skill-tag">Tableau</span><span class="skill-tag">Superset</span><span class="skill-tag">Data Storytelling</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL & Data Warehouse</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL Avanzado</span><span class="skill-tag">CTEs</span><span class="skill-tag">Window Functions</span>
+        <span class="skill-tag">BigQuery</span><span class="skill-tag">Snowflake</span><span class="skill-tag">ClickHouse</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">ETL & Integración</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ETL Pipelines</span><span class="skill-tag">Airflow</span><span class="skill-tag">Parsing JSON</span>
+        <span class="skill-tag">Normalización</span><span class="skill-tag">Transformación</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Programación</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">pandas</span><span class="skill-tag">numpy</span>
+        <span class="skill-tag">matplotlib</span><span class="skill-tag">Excel VBA</span><span class="skill-tag">Macros</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">💰</div>
+      <div class="skill-name">Finanzas & Reporting</div>
+      <div class="skill-tags">
+        <span class="skill-tag">P&L</span><span class="skill-tag">KPIs Financieros</span><span class="skill-tag">Conciliaciones</span>
+        <span class="skill-tag">DIAN</span><span class="skill-tag">Mintic</span><span class="skill-tag">Reportes Ejecutivos</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🌎</div>
+      <div class="skill-name">Gestión & Liderazgo</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Equipos analíticos</span><span class="skill-tag">Stakeholders LATAM</span>
+        <span class="skill-tag">QA de datos</span><span class="skill-tag">Priorización</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="reveal">
+    <span class="section-tag" style="color:var(--accent2)">Trayectoria</span>
+    <h2 class="section-title white">Experiencia</h2>
+    <div class="section-line white"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-title">Controller BI Financiero</div>
+          <div class="timeline-dates">dic. 2022 – Actualidad</div>
+        </div>
+        <div class="timeline-company">PICAP LATAM</div>
+        <ul class="timeline-bullets">
+          <li>Coordino estrategia de BI financiero con dashboards ejecutivos en Tableau y Superset para gerencia general y líderes de negocio.</li>
+          <li>Diseñé e implementé el modelo de rentabilidad (P&L) por cliente B2B, adoptado por gerencia como herramienta clave de decisión comercial.</li>
+          <li>Desarrollo SQL avanzado (CTEs, window functions) en BigQuery y Snowflake, incluyendo transformación y normalización de JSON.</li>
+          <li>Gestiono reportería regulatoria DIAN y Mintic, asegurando cumplimiento normativo de la compañía.</li>
+          <li>Implementé flujos automatizados en Airflow para actualización recurrente de reportes en Superset.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-title">Analista Corporativo LATAM</div>
+          <div class="timeline-dates">ene. 2022 – nov. 2022</div>
+        </div>
+        <div class="timeline-company">PICAP LATAM</div>
+        <ul class="timeline-bullets">
+          <li>Reportes de facturación y conciliación B2B en Colombia, México, Paraguay y Guatemala.</li>
+          <li>Lideré equipo de 2–3 analistas LATAM con foco en calidad de entregables.</li>
+          <li>Desarrollé consultas SQL complejas y macros respaldando presupuestos y P&L.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-title">Analista de Operaciones</div>
+          <div class="timeline-dates">nov. 2020 – dic. 2021</div>
+        </div>
+        <div class="timeline-company">PICAP LATAM</div>
+        <ul class="timeline-bullets">
+          <li>Automaticé generación y envío masivo de informes con macros en Excel.</li>
+          <li>Rediseñé proceso de liquidación reduciendo tiempos de varios días a 1 día.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <div class="timeline-title">Practicante de Procesos</div>
+          <div class="timeline-dates">nov. 2019 – may. 2020</div>
+        </div>
+        <div class="timeline-company">MAPFRE</div>
+        <ul class="timeline-bullets">
+          <li>Migré procesos de cartera, legalizaciones e intermediarios al sistema corporativo, logrando trazabilidad y reducción de reprocesos.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="reveal">
+    <span class="section-tag">Impacto real</span>
+    <h2 class="section-title">Proyectos destacados</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-number">01</div>
+      <div class="project-title">P&L de Rentabilidad por Cliente B2B</div>
+      <div class="project-desc">Diseñé e implementé el modelo de rentabilidad para la línea de mensajería B2B (PIBOX), integrando ingresos y costos para evaluar márgenes y soportar decisiones de pricing. Contribuyó a un incremento de ~1,5 pp en el margen bruto de la línea.</div>
+      <span class="project-tag">📈 +1.5pp margen bruto</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-number">02</div>
+      <div class="project-title">Modelo Predictivo de Demanda</div>
+      <div class="project-desc">Desarrollé un modelo en Python para pronosticar volumen de paquetes con una precisión cercana al 95%, optimizando la planeación logística y la asignación de recursos operativos.</div>
+      <span class="project-tag">🎯 95% precisión</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-number">03</div>
+      <div class="project-title">Automatización con Airflow</div>
+      <div class="project-desc">Diseñé flujos automatizados para la actualización recurrente de dashboards en Superset, eliminando procesos manuales y asegurando disponibilidad de información en tiempo real para distintas áreas.</div>
+      <span class="project-tag">⚡ Procesos automatizados</span>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-number">04</div>
+      <div class="project-title">Optimización en BigQuery</div>
+      <div class="project-desc">Desarrollé estrategias de particionado, clustering y filtrado temprano que redujeron el consumo de recursos y mejoraron los tiempos de respuesta en consultas críticas para reportes ejecutivos.</div>
+      <span class="project-tag">🚀 Reducción de costos</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="reveal">
+    <span class="section-tag" style="color:var(--accent2)">Hablemos</span>
+    <h2 class="section-title white" style="text-align:center">¿Trabajamos juntos?</h2>
+    <div class="section-line white" style="margin:12px auto 48px"></div>
+  </div>
+  <div class="contact-card reveal">
+    <p>Estoy buscando nuevas oportunidades en roles de BI Senior, Data Analyst o Controller de Datos. Si tienes un proyecto o posición que encaje con mi perfil, me encantaría conversar.</p>
+    <div class="contact-links">
+      <a href="mailto:hmbphh@gmail.com" class="contact-link">✉️ hmbphh@gmail.com</a>
+      <a href="https://www.linkedin.com/in/mauricio-bustos-588bb1116/" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/mauricio9725/Proyectos-Power-BI" target="_blank" class="contact-link">💻 GitHub</a>
+      <a href="tel:3224013861" class="contact-link">📱 3224013861</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Diseñado con intención · <span>Hernán Mauricio Bustos</span> · 2025</p>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if(entry.isIntersecting){
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.1});
+reveals.forEach(el => observer.observe(el));
+
+// Nav active state
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.3)' : 'none';
+});
+</script>
+</body>
+</html>
